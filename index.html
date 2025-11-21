@@ -687,8 +687,8 @@
                             {quickMode && (
                                 <div className="mt-4 mb-4 p-4 rounded-lg" style={{backgroundColor: '#fadf0a30'}}>
                                     <p className="text-sm text-gray-800">
-                                        <strong>Quick Mode:</strong> Showing only critical questions (weight 3). 
-                                        {filteredQuestions.length} of {questions.length} questions.
+                                        <br><strong>Quick Mode:</strong> Showing only critical questions (weight 3).</br> 
+                                       <br>{filteredQuestions.length} of {questions.length} questions.</br>
                                     </p>
                                 </div>
                             )}
@@ -767,7 +767,8 @@
                             </div>
 
                             {categories.map((category, idx) => {
-                                if (hiddenCategories.has(category)) return null;
+                                const isHidden = hiddenCategories.has(category);
+                                    if (isHidden) return null;
                                 
                                 return (
                                     <div key={category} className={`category-section ${idx > 0 ? 'mt-8 pt-8 border-t border-gray-200' : ''}`}>
