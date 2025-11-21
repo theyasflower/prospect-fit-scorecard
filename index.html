@@ -363,7 +363,7 @@
             const shareToLinkedIn = () => {
                 const score = calculateScore().toFixed(1);
                 const interpretation = getScoreInterpretation(score);
-                const text = `Just vetted a potential client using TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}`;
+                const text = `Just vetted a potential client using @TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}`;
                 const url = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'width=600,height=600');
             };
@@ -371,7 +371,7 @@
             const shareToX = () => {
                 const score = calculateScore().toFixed(1);
                 const interpretation = getScoreInterpretation(score);
-                const text = `Just vetted a potential client using TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}`;
+                const text = `Just vetted a potential client using @TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}`;
                 const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'width=600,height=400');
             };
@@ -393,7 +393,7 @@
                 const hasSavedData = localStorage.getItem('clientVetting');
                 
                 return (
-                    <div className="min-h-screen flex items-center justify-center p-4 bg-white">
+                    <div className="min-h-0 flex items-center justify-center p-4 bg-white">
                         <div className="max-w-md w-full bg-white rounded-xl shadow-xl p-8 border border-gray-200">
                             <div className="text-center mb-8">
                                 <h1 className="text-3xl font-bold text-gray-900 mb-2">Client Pre-Vetting Checklist</h1>
@@ -456,7 +456,7 @@
                                                 className="h-4 w-4"
                                                 style={{accentColor: '#afa5fe'}}
                                             />
-                                            <span className="ml-3 text-gray-900">Marketer / Consultant</span>
+                                            <span className="ml-3 text-gray-900">Freelance Content Marketer / Consultant</span>
                                         </label>
                                     </div>
                                 </div>
@@ -491,7 +491,7 @@
                 const interpretation = getScoreInterpretation(score);
 
                 return (
-                    <div className="min-h-screen bg-white py-12 px-4">
+                    <div className="min-h-0 bg-white py-12 px-4">
                         <div className="max-w-4xl mx-auto">
                             <div className="bg-white rounded-xl shadow-xl p-8">
                                 <div className="no-print flex justify-between items-start mb-6">
@@ -532,7 +532,7 @@
                                     </div>
                                     {clientName && <p className="text-gray-600 mt-1">Client: <span className="font-semibold">{clientName}</span></p>}
                                     <p className="text-sm text-gray-500 mt-1">
-                                        {role === 'writer' ? 'Freelance Writer' : 'Marketer / Consultant'} Checklist
+                                        {role === 'writer' ? 'Freelance Writer' : 'Freelance Content Marketer / Consultant'} Checklist
                                         {quickMode && ' (Quick Mode - Critical Only)'}
                                     </p>
                                 </div>
@@ -626,7 +626,7 @@
 
             // CHECKLIST SCREEN
             return (
-                <div className="min-h-screen bg-white">
+                <div className="min-h-0 bg-white">
                     <div className="bg-white shadow-sm sticky top-0 z-10 border-b border-gray-200">
                         <div className="max-w-4xl mx-auto px-4 py-4">
                             <div className="flex justify-between items-center mb-3">
@@ -686,10 +686,10 @@
                             </div>
 
                             {quickMode && (
-                                <div className="mt-4 p-3 rounded-lg" style={{backgroundColor: '#fadf0a30'}}>
+                                <div className="mt-4 mb-4 p-4 rounded-lg" style={{backgroundColor: '#fadf0a30'}}>
                                     <p className="text-sm text-gray-800">
                                         <strong>Quick Mode:</strong> Showing only critical questions (weight 3). 
-                                        {filteredQuestions.length} of {questions.length} questions.
+                                        {filteredQuestions.length} of {questions.length} questions
                                     </p>
                                 </div>
                             )}
@@ -767,13 +767,14 @@
                                 </div>
                             </div>
 
-                            {categories.map((category, idx) => {
-                                const isHidden = hiddenCategories.has(category);
-                                if (isHidden) return null;  // Keep this for hiding the questions
-                                
-                                return (
-                                    <div key={category} className={`category-section ${idx > 0 ? 'mt-8 pt-8 border-t border-gray-200' : ''}`}>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-4">{category}</h3>
+</div>
+{categories.map((category, idx) => {
+    const isHidden = hiddenCategories.has(category);
+    if (isHidden) return null;
+    
+    return (
+        <div key={category} className={`category-section ${idx > 0 ? 'mt-8 pt-8 border-t border-gray-200' : ''}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">{category}</h3>
                                         <div className="space-y-3">
                                             {categorizedQuestions[category].map(question => (
                                                 <div key={question.id} 
