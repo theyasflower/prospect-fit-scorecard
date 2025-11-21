@@ -768,7 +768,8 @@
                             </div>
 
                             {categories.map((category, idx) => {
-                                if (hiddenCategories.has(category)) return null;
+                                const isHidden = hiddenCategories.has(category);
+                                if (isHidden) return null;  // Keep this for hiding the questions
                                 
                                 return (
                                     <div key={category} className={`category-section ${idx > 0 ? 'mt-8 pt-8 border-t border-gray-200' : ''}`}>
