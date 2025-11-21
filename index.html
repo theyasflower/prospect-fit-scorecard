@@ -385,7 +385,7 @@
 
             const categories = Object.keys(categorizedQuestions).sort();
             const allCategories = [...new Set(questions.map(q => q.category))].sort();
-            const answeredCount = filteredQuestions.filter(q => answers[q.id] !== undefined).length;
+            const answeredCount = filteredQuestions.filter(q => answers[q.id] === true).length;
             const progress = (answeredCount / filteredQuestions.length) * 100;
 
             // START SCREEN
