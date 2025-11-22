@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Pre-Vetting Checklist | TheMinCave</title>
+    <title>Prospect Fit Scorecard | TheMinCave</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -142,10 +142,10 @@
 
         // Writer questions base (61 questions, 162 total weight)
         const WRITER_QUESTIONS_BASE = [
-            { id: 1, category: "AI Adoption", question: "Does the client have a positive outlook toward AI-assisted research, ideation and editing?", defaultWeight: 2 },
+            { id: 1, category: "AI Adoption", question: "Does the prospect have a positive outlook toward AI-assisted research, ideation and editing?", defaultWeight: 2 },
             { id: 2, category: "Budget & Payment Terms", question: "Is the per-word, per-hour, or per-project rate stated and competitive for your experience level?", defaultWeight: 3 },
             { id: 3, category: "Budget & Payment Terms", question: "Is the payment schedule clearly defined (upfront, milestones, net 15/30/60 terms)?", defaultWeight: 2 },
-            { id: 4, category: "Budget & Payment Terms", question: "Does the client have a documented or self-reported history of timely payments to freelancers?", defaultWeight: 3 },
+            { id: 4, category: "Budget & Payment Terms", question: "Does the prospect have a documented or self-reported history of timely payments to freelancers?", defaultWeight: 3 },
             { id: 5, category: "Budget & Payment Terms", question: "Are penalties for late payment agreed on (typically 1.5-3%)?", defaultWeight: 2 },
             { id: 6, category: "Budget & Payment Terms", question: "Is there a provision for additional charges if scope changes?", defaultWeight: 2 },
             { id: 7, category: "Budget & Payment Terms", question: "Are research, interviews, or tool expenses reimbursable?", defaultWeight: 2 },
@@ -153,23 +153,23 @@
             { id: 9, category: "Budget & Payment Terms", question: "Is there clarity on what constitutes additional work requiring extra payment?", defaultWeight: 3 },
             { id: 10, category: "Budget & Payment Terms", question: "Is the kill fee policy for cancelled projects clearly stated (typically 25-50%)?", defaultWeight: 3 },
             { id: 11, category: "Budget & Payment Terms", question: "Is their preferred payment method accepted and secure?", defaultWeight: 3 },
-            { id: 12, category: "Client Business & Stability", question: "Does the client's business have a clear revenue stream?", defaultWeight: 3 },
-            { id: 13, category: "Client Business & Stability", question: "Is the client's industry stable and not facing major disruption?", defaultWeight: 3 },
-            { id: 14, category: "Client Experience & Reputation", question: "Does the client have realistic expectations about content ROI and timelines?", defaultWeight: 3 },
-            { id: 15, category: "Client Experience & Reputation", question: "Has the client worked with freelance writers before?", defaultWeight: 2 },
-            { id: 16, category: "Client Experience & Reputation", question: "Can you find any references or testimonials from past writers?", defaultWeight: 1 },
-            { id: 17, category: "Client Experience & Reputation", question: "Does the client avoid dismissive statements about writing, such as \"this should be easy\"?", defaultWeight: 3 },
-            { id: 18, category: "Client Experience & Reputation", question: "Has the client avoided asking for free samples?", defaultWeight: 2 },
-            { id: 19, category: "Communication & Collaboration", question: "Does the client communicate clearly and professionally in initial interactions?", defaultWeight: 3 },
+            { id: 12, category: "Prospect Business & Stability", question: "Does the prospect's business have a clear revenue stream?", defaultWeight: 3 },
+            { id: 13, category: "Prospect Business & Stability", question: "Is the prospect's industry stable and not facing major disruption?", defaultWeight: 3 },
+            { id: 14, category: "Prospect Experience & Reputation", question: "Does the prospect have realistic expectations about content ROI and timelines?", defaultWeight: 3 },
+            { id: 15, category: "Prospect Experience & Reputation", question: "Has the prospect worked with freelance writers before?", defaultWeight: 2 },
+            { id: 16, category: "Prospect Experience & Reputation", question: "Can you find any references or testimonials from past writers?", defaultWeight: 1 },
+            { id: 17, category: "Prospect Experience & Reputation", question: "Does the prospect avoid dismissive statements about writing, such as \"this should be easy\"?", defaultWeight: 3 },
+            { id: 18, category: "Prospect Experience & Reputation", question: "Has the prospect avoided asking for free samples?", defaultWeight: 2 },
+            { id: 19, category: "Communication & Collaboration", question: "Does the propect communicate clearly and professionally in initial interactions?", defaultWeight: 3 },
             { id: 20, category: "Communication & Collaboration", question: "Are communication channels and frequency expectations clear?", defaultWeight: 3 },
-            { id: 21, category: "Communication & Collaboration", question: "Does the client respect your working hours and boundaries?", defaultWeight: 3 },
-            { id: 22, category: "Communication & Collaboration", question: "Is the client open to feedback?", defaultWeight: 2 },
-            { id: 23, category: "Communication & Collaboration", question: "Does the client allow autonomy and trust in your expertise?", defaultWeight: 2 },
+            { id: 21, category: "Communication & Collaboration", question: "Does the prospect respect your working hours and boundaries?", defaultWeight: 3 },
+            { id: 22, category: "Communication & Collaboration", question: "Is the prospect open to feedback?", defaultWeight: 2 },
+            { id: 23, category: "Communication & Collaboration", question: "Does the prospect allow autonomy and trust in your expertise?", defaultWeight: 2 },
             { id: 24, category: "Communication & Collaboration", question: "Is there a single point of contact to avoid conflicting feedback from multiple stakeholders?", defaultWeight: 3 },
-            { id: 25, category: "Communication & Collaboration", question: "Is the client open to new ideas and not fixed on their own approach?", defaultWeight: 3 },
+            { id: 25, category: "Communication & Collaboration", question: "Is the prospect open to new ideas and not fixed on their own approach?", defaultWeight: 3 },
             { id: 26, category: "Content Requirements & Strategy", question: "Are deliverables and formats explicitly stated?", defaultWeight: 3 },
-            { id: 27, category: "Content Requirements & Strategy", question: "Can the client articulate their content strategy and how writing fits into business goals?", defaultWeight: 3 },
-            { id: 28, category: "Content Requirements & Strategy", question: "Has the client explained their target audience and messaging clearly?", defaultWeight: 3 },
+            { id: 27, category: "Content Requirements & Strategy", question: "Can the prospect articulate their content strategy and how writing fits into business goals?", defaultWeight: 3 },
+            { id: 28, category: "Content Requirements & Strategy", question: "Has the prospect explained their target audience and messaging clearly?", defaultWeight: 3 },
             { id: 29, category: "Content Requirements & Strategy", question: "Are search optimization goals clearly specified?", defaultWeight: 3 },
             { id: 30, category: "Contract & Legal", question: "Are your responsibilities clearly defined?", defaultWeight: 3 },
             { id: 31, category: "Contract & Legal", question: "Can you retain samples for portfolio use?", defaultWeight: 2 },
@@ -182,21 +182,21 @@
             { id: 38, category: "Editorial Process & Workflow", question: "Is the main editorial contact identified and authorized to make decisions?", defaultWeight: 1 },
             { id: 39, category: "Editorial Process & Workflow", question: "Are revision rounds and feedback cycles clearly upon?", defaultWeight: 3 },
             { id: 40, category: "Editorial Process & Workflow", question: "Are content approval deadlines realistic?", defaultWeight: 3 },
-            { id: 41, category: "Industry & Niche Alignment", question: "Does the client's content niche fit your expertise and career goals?", defaultWeight: 3 },
-            { id: 42, category: "Industry & Niche Alignment", question: "Are there no ethical concerns with the client's industry or business practices?", defaultWeight: 3 },
-            { id: 43, category: "Industry & Niche Alignment", question: "Does the client's brand align with your personal and professional values?", defaultWeight: 3 },
+            { id: 41, category: "Industry & Niche Alignment", question: "Does the prospect's content niche fit your expertise and career goals?", defaultWeight: 3 },
+            { id: 42, category: "Industry & Niche Alignment", question: "Are there no ethical concerns with the prospect's industry or business practices?", defaultWeight: 3 },
+            { id: 43, category: "Industry & Niche Alignment", question: "Does the prospect's brand align with your personal and professional values?", defaultWeight: 3 },
             { id: 44, category: "Long-Term Partnership", question: "Is there potential for ongoing content work or retainer agreements?", defaultWeight: 3 },
             { id: 45, category: "Long-Term Partnership", question: "Are there opportunities to upsell or take on additional content types?", defaultWeight: 3 },
-            { id: 46, category: "Project Management & Tools", question: "Does the client provide necessary research tools and subscriptions?", defaultWeight: 3 },
+            { id: 46, category: "Project Management & Tools", question: "Does the prospect provide necessary research tools and subscriptions?", defaultWeight: 3 },
             { id: 47, category: "Project Management & Tools", question: "Is interview access and source coordination supported when needed?", defaultWeight: 3 },
-            { id: 48, category: "Red Flags & Warning Signs", question: "Has the client avoided ghosting or disappearing during initial communications?", defaultWeight: 3 },
-            { id: 49, category: "Red Flags & Warning Signs", question: "Does the client avoid suggesting \"exposure\" or \"great for your portfolio\" as payment?", defaultWeight: 3 },
-            { id: 50, category: "Red Flags & Warning Signs", question: "Does the client avoid requesting unnecessary CV/resume when your portfolio suffices?", defaultWeight: 3 },
+            { id: 48, category: "Red Flags & Warning Signs", question: "Has the prospect avoided ghosting or disappearing during initial communications?", defaultWeight: 3 },
+            { id: 49, category: "Red Flags & Warning Signs", question: "Does the prospect avoid suggesting \"exposure\" or \"great for your portfolio\" as payment?", defaultWeight: 3 },
+            { id: 50, category: "Red Flags & Warning Signs", question: "Does the prospect avoid requesting unnecessary CV/resume when your portfolio suffices?", defaultWeight: 3 },
             { id: 51, category: "Risk Assessment", question: "Are there safeguards against non-payment (contracts, deposits, etc.)?", defaultWeight: 3 },
-            { id: 52, category: "Risk Assessment", question: "Can you verify the client's legitimacy through their website, LinkedIn, or references?", defaultWeight: 3 },
+            { id: 52, category: "Risk Assessment", question: "Can you verify the prospect's legitimacy through their website, LinkedIn, or references?", defaultWeight: 3 },
             { id: 53, category: "Risk Assessment", question: "Are there no unusual personal or professional requirements that seem inappropriate?", defaultWeight: 3 },
             { id: 54, category: "Your Capability & Availability", question: "Are working hours flexible or aligned with your schedule?", defaultWeight: 2 },
-            { id: 55, category: "Your Capability & Availability", question: "Does the client's brand align with your personal and professional values?", defaultWeight: 3 },
+            { id: 55, category: "Your Capability & Availability", question: "Does the prospect's brand align with your personal and professional values?", defaultWeight: 3 },
             { id: 56, category: "Your Capability & Availability", question: "Do you have the skills and experience required to deliver quality work?", defaultWeight: 2 },
             { id: 57, category: "Your Capability & Availability", question: "Does the project align with your professional development goals?", defaultWeight: 3 },
             { id: 58, category: "Your Capability & Availability", question: "Does your current workload allow taking on this project without compromising quality?", defaultWeight: 3 },
@@ -207,38 +207,38 @@
 
         // Marketer questions base (76 questions)
         const MARKETER_QUESTIONS_BASE = [
-            { id: 101, category: "AI Adoption", question: "Is the client open to using AI tools for time-saving usecases like data analysis?", defaultWeight: 3 },
-            { id: 102, category: "AI Adoption", question: "Is the client open to using AI for content ideation?", defaultWeight: 2 },
+            { id: 101, category: "AI Adoption", question: "Is the prospect open to using AI tools for time-saving usecases like data analysis?", defaultWeight: 3 },
+            { id: 102, category: "AI Adoption", question: "Is the prospect open to using AI for content ideation?", defaultWeight: 2 },
             { id: 103, category: "Budget & Payment", question: "Are campaign budgets separate from consulting fees?", defaultWeight: 2 },
             { id: 104, category: "Budget & Payment", question: "Are performance bonuses or incentive structures discussed?", defaultWeight: 1 },
-            { id: 105, category: "Budget & Payment", question: "Does the client understand fractional marketing costs versus full-time employee costs?", defaultWeight: 2 },
+            { id: 105, category: "Budget & Payment", question: "Does the prospect understand fractional marketing costs versus full-time employee costs?", defaultWeight: 2 },
             { id: 106, category: "Budget & Payment", question: "Is there flexibility to adjust budgets based on campaign performance and results?", defaultWeight: 2 },
             { id: 107, category: "Budget & Payment", question: "Is responsibility for vendor payments and approvals clearly assigned?", defaultWeight: 3 },
             { id: 108, category: "Budget & Payment", question: "Are the retainer or project fees clearly stated and fair?", defaultWeight: 3 },
             { id: 109, category: "Communication & Collaboration", question: "Is there a formal onboarding process for new marketing partners?", defaultWeight: 2 },
             { id: 110, category: "Communication & Collaboration", question: "Will you have access to internal training materials and knowledge bases?", defaultWeight: 2 },
-            { id: 111, category: "Communication & Collaboration", question: "Has the client worked with fractional marketers or consultants before?", defaultWeight: 1 },
-            { id: 112, category: "Communication & Collaboration", question: "Does the client report having positive experiences with past marketing partners?", defaultWeight: 3 },
-            { id: 113, category: "Communication & Collaboration", question: "Does the client have a history of maintaining long-term relationships with freelancers or agencies?", defaultWeight: 3 },
-            { id: 114, category: "Communication & Collaboration", question: "Is the client open to new ideas and not fixed on their own approach?", defaultWeight: 3 },
+            { id: 111, category: "Communication & Collaboration", question: "Has the prospect worked with fractional marketers or consultants before?", defaultWeight: 1 },
+            { id: 112, category: "Communication & Collaboration", question: "Does the prospect report having positive experiences with past marketing partners?", defaultWeight: 3 },
+            { id: 113, category: "Communication & Collaboration", question: "Does the prospect have a history of maintaining long-term relationships with freelancers or agencies?", defaultWeight: 3 },
+            { id: 114, category: "Communication & Collaboration", question: "Is the prospect open to new ideas and not fixed on their own approach?", defaultWeight: 3 },
             { id: 115, category: "Communication & Collaboration", question: "Are communication channels, meeting schedules, and reporting formats agreed upon?", defaultWeight: 3 },
-            { id: 116, category: "Communication & Collaboration", question: "Does the client respond promptly and maintain regular contact?", defaultWeight: 3 },
-            { id: 117, category: "Communication & Collaboration", question: "Are the client's project deadlines realistic and achievable?", defaultWeight: 3 },
-            { id: 118, category: "Communication & Collaboration", question: "Does the client communicate clearly and professionally in initial interactions?", defaultWeight: 3 },
-            { id: 119, category: "Communication & Collaboration", question: "Does the client allow autonomy and trust in your expertise?", defaultWeight: 3 },
+            { id: 116, category: "Communication & Collaboration", question: "Does the prospect respond promptly and maintain regular contact?", defaultWeight: 3 },
+            { id: 117, category: "Communication & Collaboration", question: "Are the prospect's project deadlines realistic and achievable?", defaultWeight: 3 },
+            { id: 118, category: "Communication & Collaboration", question: "Does the prospect communicate clearly and professionally in initial interactions?", defaultWeight: 3 },
+            { id: 119, category: "Communication & Collaboration", question: "Does the prospect allow autonomy and trust in your expertise?", defaultWeight: 3 },
             { id: 120, category: "Compliance & Regulations", question: "Do they operate in industries you meet compliance requirements in (e.g., finance, health)?", defaultWeight: 3 },
-            { id: 121, category: "Compliance & Regulations", question: "Are there no ethical concerns with the client's industry or business practices?", defaultWeight: 3 },
+            { id: 121, category: "Compliance & Regulations", question: "Are there no ethical concerns with the prospect's industry or business practices?", defaultWeight: 3 },
             { id: 122, category: "Compliance & Regulations", question: "Are there no tax, legal, or regulatory barriers that would prevent working with them?", defaultWeight: 3 },
             { id: 123, category: "Contract & Legal", question: "Will a formal contract be signed covering scope, payment terms and IP?", defaultWeight: 3 },
-            { id: 124, category: "Contract & Legal", question: "Will the client allow you to use their work in your portfolio?", defaultWeight: 3 },
+            { id: 124, category: "Contract & Legal", question: "Will the prospect allow you to use their work in your portfolio?", defaultWeight: 3 },
             { id: 125, category: "Contract & Legal", question: "Are confidentiality and non-disclosure terms appropriate and reasonable?", defaultWeight: 2 },
             { id: 126, category: "Contract & Legal", question: "Are terms for early termination, pauses, or cancellations clearly defined?", defaultWeight: 3 },
             { id: 127, category: "Contract & Legal", question: "Are liability protections and indemnity terms specified?", defaultWeight: 3 },
             { id: 128, category: "Contract & Legal", question: "Are your responsibilities clearly defined?", defaultWeight: 3 },
-            { id: 129, category: "Content Marketing Experience", question: "Does the client understand content marketing and its roles?", defaultWeight: 3 },
-            { id: 130, category: "Content Marketing Experience", question: "Does the client have a documented content marketing strategy?", defaultWeight: 1 },
-            { id: 131, category: "Content Marketing Experience", question: "Does the client understand search and social optimization?", defaultWeight: 3 },
-            { id: 132, category: "Content Marketing Experience", question: "Has the client identified key competitors and their positioning?", defaultWeight: 2 },
+            { id: 129, category: "Content Marketing Experience", question: "Does the prospect understand content marketing and its roles?", defaultWeight: 3 },
+            { id: 130, category: "Content Marketing Experience", question: "Does the prospect have a documented content marketing strategy?", defaultWeight: 1 },
+            { id: 131, category: "Content Marketing Experience", question: "Does the prospect understand search and social optimization?", defaultWeight: 3 },
+            { id: 132, category: "Content Marketing Experience", question: "Has the prospect identified key competitors and their positioning?", defaultWeight: 2 },
             { id: 133, category: "Content Marketing Experience", question: "Are preferred content distribution channels and platforms clearly specified?", defaultWeight: 3 },
             { id: 134, category: "Long-Term Partnership", question: "Are you aligned on marketing philosophies or visions?", defaultWeight: 3 },
             { id: 135, category: "Long-Term Partnership", question: "Is there potential to expand engagement or increase scope?", defaultWeight: 3 },
@@ -249,23 +249,23 @@
             { id: 140, category: "Marketing Strategy & Objectives", question: "Are marketing goals specific and measurable?", defaultWeight: 3 },
             { id: 141, category: "Marketing Strategy & Objectives", question: "Are marketing goals aligned with overall business objectives?", defaultWeight: 3 },
             { id: 142, category: "Marketing Strategy & Objectives", question: "Are marketing challenges or pain points identified?", defaultWeight: 2 },
-            { id: 143, category: "Marketing Strategy & Objectives", question: "Does the client allow for unique yet strategic marketing recommendations and testing?", defaultWeight: 2 },
-            { id: 144, category: "Marketing Strategy & Objectives", question: "Does the client have paying customers and a validated product or service?", defaultWeight: 3 },
-            { id: 145, category: "Marketing Strategy & Objectives", question: "Does the client provide past marketing data or campaign results?", defaultWeight: 2 },
-            { id: 146, category: "Marketing Strategy & Objectives", question: "Has the client documented their target market and ideal customer profile?", defaultWeight: 3 },
-            { id: 147, category: "Marketing Strategy & Objectives", question: "Does the client provide hands-on access to their product or service?", defaultWeight: 3 },
-            { id: 148, category: "Marketing Strategy & Objectives", question: "Can the client provide testimonials or documented case studies?", defaultWeight: 3 },
-            { id: 149, category: "Marketing Strategy & Objectives", question: "Does the client actively collect and use customer feedback to inform marketing?", defaultWeight: 3 },
-            { id: 150, category: "Resource Availability", question: "Will the client provide necessary resources (content, access, personnel) on time?", defaultWeight: 3 },
+            { id: 143, category: "Marketing Strategy & Objectives", question: "Does the prospect allow for unique yet strategic marketing recommendations and testing?", defaultWeight: 2 },
+            { id: 144, category: "Marketing Strategy & Objectives", question: "Does the prospect have paying customers and a validated product or service?", defaultWeight: 3 },
+            { id: 145, category: "Marketing Strategy & Objectives", question: "Does the prospect provide past marketing data or campaign results?", defaultWeight: 2 },
+            { id: 146, category: "Marketing Strategy & Objectives", question: "Has the prospect documented their target market and ideal customer profile?", defaultWeight: 3 },
+            { id: 147, category: "Marketing Strategy & Objectives", question: "Does the prospect provide hands-on access to their product or service?", defaultWeight: 3 },
+            { id: 148, category: "Marketing Strategy & Objectives", question: "Can the prospect provide testimonials or documented case studies?", defaultWeight: 3 },
+            { id: 149, category: "Marketing Strategy & Objectives", question: "Does the prospect actively collect and use customer feedback to inform marketing?", defaultWeight: 3 },
+            { id: 150, category: "Resource Availability", question: "Will the prospect provide necessary resources (content, access, personnel) on time?", defaultWeight: 3 },
             { id: 151, category: "Risk Assessment", question: "Are there safeguards against non-payment (contracts, deposits, etc.)?", defaultWeight: 3 },
-            { id: 152, category: "Risk Assessment", question: "Does the client avoid requesting free audits or unpaid work?", defaultWeight: 3 },
-            { id: 153, category: "Risk Assessment", question: "Does the client communicate honestly and clearly?", defaultWeight: 3 },
-            { id: 154, category: "Risk Assessment", question: "Does the client respect your time, boundaries, working hours and processes?", defaultWeight: 3 },
-            { id: 155, category: "Risk Assessment", question: "Does the client understand marketing requires time and testing?", defaultWeight: 3 },
-            { id: 156, category: "Risk Assessment", question: "Is the client transparent about budgets, constraints, and expectations?", defaultWeight: 3 },
-            { id: 157, category: "Risk Assessment", question: "Does the client avoid suggesting \"exposure\" or \"great for your portfolio\" as payment?", defaultWeight: 3 },
-            { id: 158, category: "Risk Assessment", question: "Can you verify the client's legitimacy through their website, LinkedIn, or references?", defaultWeight: 3 },
-            { id: 159, category: "Risk Assessment", question: "Does the client avoid requesting unnecessary CV/resume when your portfolio suffices?", defaultWeight: 3 },
+            { id: 152, category: "Risk Assessment", question: "Does the prospect avoid requesting free audits or unpaid work?", defaultWeight: 3 },
+            { id: 153, category: "Risk Assessment", question: "Does the prospect communicate honestly and clearly?", defaultWeight: 3 },
+            { id: 154, category: "Risk Assessment", question: "Does the prospect respect your time, boundaries, working hours and processes?", defaultWeight: 3 },
+            { id: 155, category: "Risk Assessment", question: "Does the prospect understand marketing requires time and testing?", defaultWeight: 3 },
+            { id: 156, category: "Risk Assessment", question: "Is the prospect transparent about budgets, constraints, and expectations?", defaultWeight: 3 },
+            { id: 157, category: "Risk Assessment", question: "Does the prospect avoid suggesting \"exposure\" or \"great for your portfolio\" as payment?", defaultWeight: 3 },
+            { id: 158, category: "Risk Assessment", question: "Can you verify the prospect's legitimacy through their website, LinkedIn, or references?", defaultWeight: 3 },
+            { id: 159, category: "Risk Assessment", question: "Does the prospect avoid requesting unnecessary CV/resume when your portfolio suffices?", defaultWeight: 3 },
             { id: 160, category: "Risk Assessment", question: "Are there no unusual personal or professional requirements that seem inappropriate?", defaultWeight: 3 },
             { id: 161, category: "Team & Stakeholders", question: "Are all marketing stakeholders and roles clearly documented?", defaultWeight: 2 },
             { id: 162, category: "Team & Stakeholders", question: "Are all decision-makers involved and aligned with the marketing strategy and priorities?", defaultWeight: 3 },
@@ -280,14 +280,14 @@
             { id: 171, category: "Your Capability & Availability", question: "Are working hours flexible or aligned with your schedule?", defaultWeight: 1 },
             { id: 172, category: "Your Capability & Availability", question: "Does your current workload allow taking on this project without compromising quality?", defaultWeight: 3 },
             { id: 173, category: "Your Capability & Availability", question: "Does the project align with your professional development goals?", defaultWeight: 2 },
-            { id: 174, category: "Your Capability & Availability", question: "Does the client's brand align with your personal and professional values?", defaultWeight: 2 },
+            { id: 174, category: "Your Capability & Availability", question: "Does the prospect's brand align with your personal and professional values?", defaultWeight: 2 },
             { id: 175, category: "Your Capability & Availability", question: "Are you excited about and interested in the subject matter?", defaultWeight: 1 },
             { id: 176, category: "Your Capability & Availability", question: "Do you have the skills and experience required to deliver quality work?", defaultWeight: 3 }
         ];
 
         function App() {
             const [step, setStep] = useState('start');
-            const [clientName, setClientName] = useState('');
+            const [prospectName, setProspectName] = useState('');
             const [role, setRole] = useState('');
             const [answers, setAnswers] = useState({});
             const [customWeights, setCustomWeights] = useState({});
@@ -296,11 +296,11 @@
 
             // Load saved data from localStorage
             useEffect(() => {
-                const saved = localStorage.getItem('clientVetting');
+                const saved = localStorage.getItem('prospectVetting');
                 if (saved) {
                     try {
                         const data = JSON.parse(saved);
-                        if (data.clientName) setClientName(data.clientName);
+                        if (data.prospectName) setProspectName(data.prospectName);
                         if (data.role) setRole(data.role);
                         if (data.answers) setAnswers(data.answers);
                         if (data.customWeights) setCustomWeights(data.customWeights);
@@ -312,15 +312,15 @@
 
             // Save to localStorage whenever data changes
             useEffect(() => {
-                if (clientName || role || Object.keys(answers).length > 0) {
-                    localStorage.setItem('clientVetting', JSON.stringify({
-                        clientName,
+                if (prospectName || role || Object.keys(answers).length > 0) {
+                    localStorage.setItem('prospectVetting', JSON.stringify({
+                        prospectName,
                         role,
                         answers,
                         customWeights
                     }));
                 }
-            }, [clientName, role, answers, customWeights]);
+            }, [prospectName, role, answers, customWeights]);
 
             const questionsBase = role === 'writer' ? WRITER_QUESTIONS_BASE : MARKETER_QUESTIONS_BASE;
             const questions = questionsBase.map(q => ({
@@ -434,12 +434,12 @@
             const handleRestart = () => {
                 if (confirm('Start fresh? This will clear all answers.')) {
                     setStep('start');
-                    setClientName('');
+                    setProspectName('');
                     setRole('');
                     setAnswers({});
                     setCustomWeights({});
                     setHiddenCategories(new Set());
-                    localStorage.removeItem('clientVetting');
+                    localStorage.removeItem('prospectVetting');
                 }
             };
 
@@ -447,7 +447,7 @@
                 const score = calculateScore().toFixed(1);
                 const interpretation = getScoreInterpretation(score);
                 const pageUrl = window.location.href;
-                const text = `Just vetted a potential client using @TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}\n\n${pageUrl}`;
+                const text = `Just vetted a potential client using @TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}\n\n${https://themincave.com/tools/Prospect-Fit-Scorecard}`;
                 const url = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'width=600,height=600');
             };
@@ -456,7 +456,7 @@
                 const score = calculateScore().toFixed(1);
                 const interpretation = getScoreInterpretation(score);
                 const pageUrl = window.location.href;
-                const text = `Just vetted a potential client using @TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}\n\n${pageUrl}`;
+                const text = `Just vetted a potential client using @TheMinCave's checklist. Score: ${score}% 🎯 ${interpretation.label}\n\n${https://themincave.com/tools/Prospect-Fit-Scorecard}`;
                 const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'width=600,height=400');
             };
@@ -476,15 +476,15 @@
 
             // START SCREEN
             if (step === 'start') {
-                const hasSavedData = localStorage.getItem('clientVetting');
+                const hasSavedData = localStorage.getItem('prospectVetting');
                 
                 return (
                     <div className="min-h-0 flex items-center justify-center p-4 bg-white">
                         <div className="max-w-md w-full bg-white brutalist-card p-8">
                             <div className="text-center mb-8">
-                                <h1 className="text-3xl font-bold text-gray-900 mb-2">Client Pre-Vetting Checklist</h1>
+                                <h1 className="text-3xl font-bold text-gray-900 mb-2">Prospect Fit Scorecard</h1>
                                 <p className="text-lg font-semibold mb-1" style={{color: '#afa5fe'}}>TheMinCave</p>
-                                <p className="text-xs text-gray-500">Vet clients systematically to make better decisions</p>
+                                <p className="text-xs text-gray-500">Vet leads and prospects systematically to make better decisions</p>
                             </div>
                             
                             {hasSavedData && (
@@ -502,14 +502,14 @@
                             <form onSubmit={handleStart} className="space-y-6">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        Client Name (Optional)
+                                        Prospect Name (Optional)
                                     </label>
                                     <input
                                         type="text"
-                                        value={clientName}
-                                        onChange={(e) => setClientName(e.target.value)}
+                                        value={prospectName}
+                                        onChange={(e) => setProspectName(e.target.value)}
                                         className="brutalist-input w-full px-4 py-2 bg-white"
-                                        placeholder="Enter client or company name"
+                                        placeholder="Enter prospect or company name"
                                     />
                                 </div>
 
@@ -566,7 +566,7 @@
                             <div className="mt-6 p-4 border-2 border-black" style={{backgroundColor: '#afa5fe20', borderRadius: '12px'}}>
                                 <p className="text-sm text-gray-700">
                                     <strong style={{color: '#afa5fe'}}>What you'll do:</strong> Answer questions about your potential client. 
-                                    Get an instant vetting score to help you decide if this client is a good fit.
+                                    Get an instant vetting score to help you decide if this prospect is a good fit.
                                 </p>
                             </div>
                         </div>
@@ -605,7 +605,7 @@
                                             TheMinCave
                                         </span>
                                     </div>
-                                    {clientName && <p className="text-gray-600 mt-1">Client: <span className="font-semibold">{clientName}</span></p>}
+                                    {prospectName && <p className="text-gray-600 mt-1">Prospect: <span className="font-semibold">{prospectName}</span></p>}
                                     <p className="text-sm text-gray-500 mt-1">
                                         {role === 'writer' ? 'Freelance Writer' : 'Freelance Content Marketer / Consultant'} Checklist
                                     </p>
@@ -726,7 +726,7 @@
                                             className="brutalist-button flex-1 text-white py-3 px-6"
                                             style={{backgroundColor: '#afa5fe'}}
                                         >
-                                            Vet Another Client
+                                            Vet Another Prospect
                                         </button>
                                     </div>
                                 </div>
@@ -751,7 +751,7 @@
                                             TheMinCave
                                         </span>
                                     </div>
-                                    {clientName && <p className="text-sm text-gray-600">Client: {clientName}</p>}
+                                    {prospectName && <p className="text-sm text-gray-600">Prospect: {prospectName}</p>}
                                 </div>
                                 <span className="text-sm text-gray-600 font-semibold">{answeredCount} / {filteredQuestions.length}</span>
                             </div>
