@@ -1,5 +1,6 @@
-# client-vetting-checklist
-# 👋 START HERE - Client Vetting App
+# prospect-fit-scorecard
+
+# 👋 START HERE - Prospect Fit Scorecard
 
 ## 🎯 What You Have
 
