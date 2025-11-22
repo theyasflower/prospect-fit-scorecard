@@ -931,21 +931,18 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                         <div className="space-y-3">
                                             {categorizedQuestions[category].map(question => (
                                                 <div 
-                                                    key={question.id} 
-                                                    className="question-card flex items-start space-x-3 p-4 bg-gray-50 cursor-pointer"
-                                                    onClick={() => handleAnswerChange(question.id, !answers[question.id])}
-                                                >
-                                                    <input
-                                                        type="checkbox"
-                                                        id={`q-${question.id}`}
-                                                        checked={answers[question.id] === true}
-                                                        onChange={(e) => {
-                                                            e.stopPropagation();
-                                                            handleAnswerChange(question.id, e.target.checked);
-                                                        }}
-                                                        className="mt-1 h-5 w-5 cursor-pointer"
-                                                        style={{accentColor: '#afa5fe'}}
-                                                    />
+    key={question.id} 
+    className="question-card flex items-start space-x-3 p-4 bg-gray-50 cursor-pointer"
+    onClick={() => handleAnswerChange(question.id, !answers[question.id])}
+>
+    <input
+        type="checkbox"
+        id={`q-${question.id}`}
+        checked={answers[question.id] === true}
+        onChange={() => {}}
+        className="mt-1 h-5 w-5 cursor-pointer pointer-events-none"
+        style={{accentColor: '#afa5fe'}}
+    />
                                                     <label htmlFor={`q-${question.id}`} className="flex-1 cursor-pointer">
                                                         <span className="text-gray-900">{question.question}</span>
                                                         <span className="ml-2 text-xs font-semibold px-2 py-0.5 bg-gray-200 text-gray-700 border border-black" style={{borderRadius: '6px'}}>
