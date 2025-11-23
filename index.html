@@ -531,29 +531,7 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
                 }
             };
 
-            const addCustomQuestion = (questionText, weight) => {
-    const newQuestion = {
-        id: `custom-${Date.now()}`,
-        question: questionText,
-        defaultWeight: parseInt(weight),
-        category: "Other",
-        isCustom: true
-    };
-    setCustomQuestions(prev => [...prev, newQuestion]);
-    setShowAddQuestion(false);
-};
-
-const deleteCustomQuestion = (id) => {
-    if (confirm('Delete this custom question?')) {
-        setCustomQuestions(prev => prev.filter(q => q.id !== id));
-        // Also remove its answer
-        setAnswers(prev => {
-            const newAnswers = {...prev};
-            delete newAnswers[id];
-            return newAnswers;
-        });
-    }
-};
+    
 
             const addCustomQuestion = (questionText, weight) => {
     const newQuestion = {
