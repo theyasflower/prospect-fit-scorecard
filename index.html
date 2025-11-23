@@ -809,7 +809,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
     <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1 flex-wrap">
             <h1 className="text-base sm:text-xl font-bold text-gray-900">
-                {role === 'writer' ? 'Writer' : 'Marketer'} Fit Scorecard
+                {role === 'writer' ? 'writer' : 'marketer'} fit scorecard
             </h1>
             <span className="text-xs font-semibold px-2 py-1 border-2 border-black whitespace-nowrap" style={{backgroundColor: '#afa5fe', color: 'white', borderRadius: '6px'}}>
                 TheMinCave
@@ -910,25 +910,26 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                             )}
                         </div>
 
-                        {/* Category Filter Buttons */}
-                        <div className="bg-white brutalist-card p-4 mb-6">
-                            <p className="text-sm font-semibold text-gray-700 mb-3">Filter Categories:</p>
-                            <div className="flex flex-wrap gap-2">
-                                {allCategories.map(category => {
-                                    const isHidden = hiddenCategories.has(category);
-                                    return (
-                                        <button
-                                            key={category}
-                                            onClick={() => toggleCategory(category)}
-                                            className={`category-button px-3 py-1 text-sm font-medium ${isHidden ? 'bg-gray-200 text-gray-500 line-through' : 'text-white'}`}
-                                            style={{backgroundColor: isHidden ? '#e5e7eb' : '#afa5fe'}}
-                                        >
-                                            {category}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </div>
+                       {/* Category Filter Buttons */}
+<div className="bg-white brutalist-card p-4 mb-6">
+    <p className="text-sm font-semibold text-gray-700 mb-1">Exclude Categories:</p>
+    <p className="text-xs text-gray-500 mb-3">⚠️ Excluding categories with critical questions may skew your final score</p>
+    <div className="flex flex-wrap gap-2">
+        {allCategories.map(category => {
+            const isHidden = hiddenCategories.has(category);
+            return (
+                <button
+                    key={category}
+                    onClick={() => toggleCategory(category)}
+                    className={`category-button px-3 py-1 text-sm font-medium ${isHidden ? 'bg-gray-200 text-gray-500 line-through' : 'text-white'}`}
+                    style={{backgroundColor: isHidden ? '#e5e7eb' : '#afa5fe'}}
+                >
+                    {category}
+                </button>
+            );
+        })}
+    </div>
+</div>
 
                         {/* Questions */}
                         <div className="bg-white brutalist-card p-6 mb-6">
