@@ -988,15 +988,17 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                             })}
                         </div>
 
-                        <div className="sticky bottom-4">
-                            <button
-                                onClick={handleSubmit}
-                                className="brutalist-button w-full text-white py-4 px-6"
-                                style={{backgroundColor: '#afa5fe'}}
-                            >
-                                Calculate Vetting Score ({answeredCount}/{filteredQuestions.length} answered)
-                            </button>
-                        </div>
+                        <<div className="mt-8">
+    <div className="sticky bottom-4">
+        <button
+            onClick={handleSubmit}
+            className="brutalist-button w-full text-white py-4 px-6"
+            style={{backgroundColor: '#afa5fe'}}
+        >
+            Calculate Fit Score ({answeredCount}/{filteredQuestions.length} answered)
+        </button>
+    </div>
+</div>
                     </div>
                 </div>
             );
