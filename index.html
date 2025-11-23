@@ -936,38 +936,8 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
         </div>
         {prospectName && <p className="text-xs sm:text-sm text-gray-600">Prospect: {prospectName}</p>}
     </div>
-    <span className="text-xs sm:text-sm text-gray-600 font-semibold whitespace-nowrap flex-shrink-0">{answeredCount} / {filteredQuestions.length}</span>
+    <span className="text-xs sm:text-sm text-gray-600 font-semibold whitespace-nowrap flex-shrink-0">{answeredCount} / {filteredQuestions.length} answered</span>
 </div>
-                            <div className="w-full bg-gray-200 h-3 border-2 border-black" style={{borderRadius: '8px', overflow: 'hidden'}}>
-                                <div
-                                    className="h-full transition-all duration-300"
-                                    style={{ width: `${progress}%`, backgroundColor: '#afa5fe' }}
-                                ></div>
-                            </div>
-                           
-                     {/* Progress Milestone Messages */}
-{progress >= 25 && progress < 50 && (
-    <div className="mt-2 text-center text-sm font-semibold animate-fade-in" style={{color: '#afa5fe'}}>
-        🎯 Nice start! Keep going...
-    </div>
-)}
-{progress >= 50 && progress < 75 && (
-    <div className="mt-2 text-center text-sm font-semibold animate-fade-in" style={{color: '#afa5fe'}}>
-        🎉 Halfway there! You're doing great!
-    </div>
-)}
-{progress >= 75 && progress < 100 && (
-    <div className="mt-2 text-center text-sm font-semibold animate-fade-in" style={{color: '#afa5fe'}}>
-        🔥 Almost done! Finish strong!
-    </div>
-)}
-{progress === 100 && (
-    <div className="mt-2 text-center text-sm font-semibold text-green-600 animate-fade-in">
-        ✅ All done! Ready to calculate your score!
-    </div>
-)}
-                        </div>
-                    </div>
 
                     <div className="max-w-4xl mx-auto px-4 py-4">
                         <div className="bg-white brutalist-card p-4 sm:p-6 mb-6">
