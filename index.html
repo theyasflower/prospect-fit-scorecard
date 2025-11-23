@@ -520,7 +520,7 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
             };
 
             const handleRestart = () => {
-                if (confirm('Start fresh? This will clear all answers.')) {
+                if (confirm('Start afresh? This will clear all answers.')) {
                     setStep('start');
                     setProspectName('');
                     setRole('');
@@ -926,7 +926,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
     onClick={() => setShowAddQuestion(!showAddQuestion)}
     className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700"
 >
-    ➕ Add Custom Question
+    {customQuestions.length > 0 ? '⚙️ Manage Custom Questions' : '➕ Add Custom Question'}
 </button>
 
                                 <div className="flex-1"></div>
@@ -1129,29 +1129,41 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                         <h3 className="text-xl font-bold text-gray-900 mb-4">{category}</h3>
                                         <div className="space-y-3">
                                             {categorizedQuestions[category].map(question => (
-                                                <div 
-    key={question.id} 
-    className="question-card flex items-start space-x-3 p-4 bg-gray-50"
->
-    <input
-        type="checkbox"
-        id={`q-${question.id}`}
-        checked={answers[question.id] === true}
-        onChange={(e) => handleAnswerChange(question.id, e.target.checked)}
-        className="mt-1 h-5 w-5 cursor-pointer"
-        style={{accentColor: '#afa5fe'}}
-    />
-    <label 
-        htmlFor={`q-${question.id}`} 
-        className="flex-1 cursor-pointer"
+    <div 
+        key={question.id} 
+        className="question-card flex items-start space-x-3 p-4 bg-gray-50"
     >
-        <span className="text-gray-900">{question.question}</span>
-        <span className="ml-2 text-xs font-semibold px-2 py-0.5 bg-gray-200 text-gray-700 border border-black" style={{borderRadius: '6px'}}>
-            Weight: {question.weight}
-        </span>
-    </label>
-</div>
-                                            ))}
+        <input
+            type="checkbox"
+            id={`q-${question.id}`}
+            checked={answers[question.id] === true}
+            onChange={(e) => handleAnswerChange(question.id, e.target.checked)}
+            className="mt-1 h-5 w-5 cursor-pointer"
+            style={{accentColor: '#afa5fe'}}
+        />
+        <label 
+            htmlFor={`q-${question.id}`} 
+            className="flex-1 cursor-pointer"
+        >
+            <span className="text-gray-900">{question.question}</span>
+            <span className="ml-2 text-xs font-semibold px-2 py-0.5 bg-gray-200 text-gray-700 border border-black" style={{borderRadius: '6px'}}>
+                Weight: {question.weight}
+            </span>
+        </label>
+        {question.isCustom && (
+            <button
+                onClick={(e) => {
+                    e.preventDefault();
+                    deleteCustomQuestion(question.id);
+                }}
+                className="text-red-600 hover:text-red-800 font-bold text-sm px-2 flex-shrink-0"
+                title="Delete custom question"
+            >
+                ✕
+            </button>
+        )}
+    </div>
+))}
                                         </div>
                                     </div>
                                 );
