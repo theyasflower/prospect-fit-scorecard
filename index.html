@@ -795,7 +795,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
         <div className="bg-red-50 p-4 text-center border-2 border-black" style={{borderRadius: '16px'}}>
             <p className="text-sm text-red-600 font-semibold">🚩 Red Flags</p>
             <p className="text-2xl font-bold text-red-600">
-                {filteredQuestions.filter(q => q.weight === 3 && answers[q.id] === false).length}
+                {filteredQuestions.filter(q => q.weight === 3 && answers[q.id] !== true).length}
             </p>
         </div>
     </div>
@@ -821,7 +821,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
 
 {/* Critical Issues - Red Flags */}
 {(() => {
-    const criticalNos = filteredQuestions.filter(q => q.weight === 3 && answers[q.id] === false);
+    const criticalNos = filteredQuestions.filter(q => q.weight === 3 && answers[q.id] !== true);
     
     if (criticalNos.length > 0) {
         return (
@@ -1180,7 +1180,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
             </ul>
             <p className="mt-3"><strong>How to Answer:</strong> Tick the box for YES, leave unchecked for NO for each question.</p>
             <p className="mt-3 text-xs italic">
-                <strong>Note:</strong> This checklist is for guidance only. Feel free to adjust the questions or weights to fit your needs. 
+                <strong>Note:</strong> This checklist is for guidance only. Feel free to add new questions or adjust the weights to fit your needs. 
                 You're ultimately responsible for your own business decisions.
             </p>
         </div>
