@@ -409,21 +409,15 @@ useEffect(() => {
 
         // Enter to submit (only if not in a form)
         if (e.key === 'Enter' && !e.target.matches('input, textarea, select')) {
-            if (answeredCount === filteredQuestions.length) {
+            if (filteredQuestions && answeredCount === filteredQuestions.length) {  // ← ADD filteredQuestions check
                 handleSubmit();
             }
-        }
-
-        // Ctrl/Cmd + S to calculate
-        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-            e.preventDefault();
-            handleSubmit();
         }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-}, [step, showWeightEditor, showAddQuestion, answeredCount, filteredQuestions.length]);
+}, [step, showWeightEditor, showAddQuestion, answeredCount, filteredQuestions]);  // ← ADD filteredQuestions to dependencies
 
             // Save to localStorage whenever data changes
             useEffect(() => {
@@ -980,9 +974,9 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
              <div className="flex-1"></div>
     
     <span className="text-xs text-gray-500 hidden md:block">
-        💡 Shortcuts: <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Esc</kbd> close, 
-        <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Ctrl+S</kbd> calculate
-    </span>
+    💡 Shortcuts: <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Esc</kbd> close, 
+    <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Enter</kbd> calculate
+</span>
         </span>
     )}
 </button>
