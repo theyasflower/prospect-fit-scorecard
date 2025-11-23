@@ -338,6 +338,8 @@
             const [customWeights, setCustomWeights] = useState({});
             const [hiddenCategories, setHiddenCategories] = useState(new Set());
             const [showWeightEditor, setShowWeightEditor] = useState(false);
+            const [customQuestions, setCustomQuestions] = useState([]);
+const [showAddQuestion, setShowAddQuestion] = useState(false);
 
             function AnimatedScore({ score, color }) {
     const [displayScore, setDisplayScore] = useState(0);
@@ -377,6 +379,7 @@
                         if (data.role) setRole(data.role);
                         if (data.answers) setAnswers(data.answers);
                         if (data.customWeights) setCustomWeights(data.customWeights);
+                        if (data.customQuestions) setCustomQuestions(data.customQuestions);
                     } catch (e) {
                         console.error('Error loading saved data', e);
                     }
@@ -391,15 +394,25 @@
                         role,
                         answers,
                         customWeights
+                        customQuestions
                     }));
                 }
             }, [prospectName, role, answers, customWeights]);
 
-            const questionsBase = role === 'writer' ? WRITER_QUESTIONS_BASE : MARKETER_QUESTIONS_BASE;
-            const questions = questionsBase.map(q => ({
-                ...q,
-                weight: customWeights[q.id] !== undefined ? customWeights[q.id] : q.defaultWeight
-            }));
+           const questionsBase = role === 'writer' ? WRITER_QUESTIONS_BASE : MARKETER_QUESTIONS_BASE;
+const baseQuestions = questionsBase.map(q => ({
+    ...q,
+    weight: customWeights[q.id] !== undefined ? customWeights[q.id] : q.defaultWeight
+}));
+
+// Add custom questions with "Other" category
+const customQuestionsWithCategory = customQuestions.map(q => ({
+    ...q,
+    category: "Other",
+    weight: customWeights[q.id] !== undefined ? customWeights[q.id] : q.defaultWeight
+}));
+
+const questions = [...baseQuestions, ...customQuestionsWithCategory];
 
             const filteredQuestions = questions.filter(q => {
                 if (hiddenCategories.has(q.category)) return false;
@@ -517,6 +530,30 @@
                     localStorage.removeItem('clientVetting');
                 }
             };
+
+            const addCustomQuestion = (questionText, weight) => {
+    const newQuestion = {
+        id: `custom-${Date.now()}`,
+        question: questionText,
+        defaultWeight: parseInt(weight),
+        category: "Other",
+        isCustom: true
+    };
+    setCustomQuestions(prev => [...prev, newQuestion]);
+    setShowAddQuestion(false);
+};
+
+const deleteCustomQuestion = (id) => {
+    if (confirm('Delete this custom question?')) {
+        setCustomQuestions(prev => prev.filter(q => q.id !== id));
+        // Also remove its answer
+        setAnswers(prev => {
+            const newAnswers = {...prev};
+            delete newAnswers[id];
+            return newAnswers;
+        });
+    }
+};
 
             const shareToLinkedIn = () => {
                 const score = calculateScore().toFixed(1);
@@ -883,6 +920,20 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                     ⚖️ Adjust Weights
                                 </button>
 
+                                <button
+    onClick={() => setShowWeightEditor(!showWeightEditor)}
+    className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700"
+>
+    ⚖️ Adjust Weights
+</button>
+
+<button
+    onClick={() => setShowAddQuestion(!showAddQuestion)}
+    className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700"
+>
+    ➕ Add Custom Question
+</button>
+
                                 <div className="flex-1"></div>
 
                                 <button
@@ -949,6 +1000,85 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                                 <span className="text-gray-700 line-clamp-1">{q.question}</span>
                                             </div>
                                         ))}
+
+                                        {showAddQuestion && (
+    <div className="mt-4 p-4 bg-gray-50 border-2 border-black" style={{borderRadius: '12px'}}>
+        <h3 className="font-semibold mb-3">Add Custom Question</h3>
+        <form onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            addCustomQuestion(formData.get('question'), formData.get('weight'));
+            e.target.reset();
+        }}>
+            <div className="space-y-3">
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Question *
+                    </label>
+                    <input
+                        type="text"
+                        name="question"
+                        required
+                        className="brutalist-input w-full px-3 py-2 bg-white"
+                        placeholder="E.g., Does the client have a clear project timeline?"
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Weight *
+                    </label>
+                    <select
+                        name="weight"
+                        required
+                        className="brutalist-input w-full px-3 py-2 bg-white"
+                    >
+                        <option value="3">3 - Very Important (Non-negotiable)</option>
+                        <option value="2">2 - Important (Preferred)</option>
+                        <option value="1">1 - Nice to have (Optional)</option>
+                    </select>
+                </div>
+                <div className="flex gap-2">
+                    <button
+                        type="submit"
+                        className="brutalist-button px-4 py-2 bg-brand-primary text-white"
+                    >
+                        Add Question
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setShowAddQuestion(false)}
+                        className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        {/* Show existing custom questions */}
+        {customQuestions.length > 0 && (
+            <div className="mt-4 pt-4 border-t-2 border-gray-200">
+                <p className="text-sm font-semibold text-gray-700 mb-2">Your Custom Questions:</p>
+                <div className="space-y-2">
+                    {customQuestions.map(q => (
+                        <div key={q.id} className="flex items-center justify-between gap-2 text-sm p-2 bg-white border border-black" style={{borderRadius: '8px'}}>
+                            <span className="flex-1 text-gray-700">{q.question}</span>
+                            <span className="text-xs font-semibold px-2 py-1 bg-gray-200 text-gray-700">
+                                Weight: {q.defaultWeight}
+                            </span>
+                            <button
+                                onClick={() => deleteCustomQuestion(q.id)}
+                                className="text-red-600 hover:text-red-800 font-bold text-sm px-2"
+                            >
+                                ✕
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+    </div>
+)}
                                     </div>
                                 </div>
                             )}
