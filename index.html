@@ -45,6 +45,15 @@
             .brutalist-card, .brutalist-button { box-shadow: none !important; border: 1px solid #ccc !important; }
         }
 
+        @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
         /* Brutalist Card Styles */
         .brutalist-card {
             border: var(--border-style);
@@ -340,6 +349,7 @@
             const [showWeightEditor, setShowWeightEditor] = useState(false);
             const [customQuestions, setCustomQuestions] = useState([]);
 const [showAddQuestion, setShowAddQuestion] = useState(false);
+            const [isCalculating, setIsCalculating] = useState(false);
 
             function AnimatedScore({ score, color }) {
     const [displayScore, setDisplayScore] = useState(0);
@@ -385,6 +395,35 @@ const [showAddQuestion, setShowAddQuestion] = useState(false);
                     }
                 }
             }, []);
+
+            // Keyboard shortcuts
+useEffect(() => {
+    if (step !== 'checklist') return;
+
+    const handleKeyPress = (e) => {
+        // Escape to close modals
+        if (e.key === 'Escape') {
+            if (showWeightEditor) setShowWeightEditor(false);
+            if (showAddQuestion) setShowAddQuestion(false);
+        }
+
+        // Enter to submit (only if not in a form)
+        if (e.key === 'Enter' && !e.target.matches('input, textarea, select')) {
+            if (answeredCount === filteredQuestions.length) {
+                handleSubmit();
+            }
+        }
+
+        // Ctrl/Cmd + S to calculate
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            handleSubmit();
+        }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+}, [step, showWeightEditor, showAddQuestion, answeredCount, filteredQuestions.length]);
 
             // Save to localStorage whenever data changes
             useEffect(() => {
@@ -507,11 +546,13 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
                 };
             };
 
-            const handleSubmit = () => {
-                setStep('results');
-                setTimeout(() => {
+      const handleSubmit = () => {
+    setIsCalculating(true);
+    setTimeout(() => {
+        setStep('results');
+        setIsCalculating(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 0);
+    }, 1500); // 1.5 second delay
 };
 
             const handleBackToEdit = () => {
@@ -908,6 +949,12 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                     style={{ width: `${progress}%`, backgroundColor: '#afa5fe' }}
                                 ></div>
                             </div>
+                             {/* Progress Milestone Messages - ADD HERE */}
+        {progress >= 25 && progress < 50 && answeredCount % 5 === 0 && (
+            <div className="mt-2 text-center text-sm font-semibold" style={{color: '#afa5fe'}}>
+                🎯 Nice start! Keep going...
+            </div>
+        )}
                         </div>
                     </div>
 
@@ -924,9 +971,20 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
 
 <button
     onClick={() => setShowAddQuestion(!showAddQuestion)}
-    className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700"
+    className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700 relative"
 >
     {customQuestions.length > 0 ? '⚙️ Manage Custom Questions' : '➕ Add Custom Question'}
+    {customQuestions.length > 0 && (
+        <span className="ml-2 px-2 py-0.5 text-xs font-bold bg-brand-primary text-white border border-black" style={{borderRadius: '6px'}}>
+            {customQuestions.length}
+             <div className="flex-1"></div>
+    
+    <span className="text-xs text-gray-500 hidden md:block">
+        💡 Shortcuts: <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Esc</kbd> close, 
+        <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Ctrl+S</kbd> calculate
+    </span>
+        </span>
+    )}
 </button>
 
                                 <div className="flex-1"></div>
@@ -1060,19 +1118,40 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                 <p className="text-sm font-semibold text-gray-700 mb-2">Your Custom Questions:</p>
                 <div className="space-y-2">
                     {customQuestions.map(q => (
-                        <div key={q.id} className="flex items-center justify-between gap-2 text-sm p-2 bg-white border border-black" style={{borderRadius: '8px'}}>
-                            <span className="flex-1 text-gray-700">{q.question}</span>
-                            <span className="text-xs font-semibold px-2 py-1 bg-gray-200 text-gray-700">
-                                Weight: {q.defaultWeight}
-                            </span>
-                            <button
-                                onClick={() => deleteCustomQuestion(q.id)}
-                                className="text-red-600 hover:text-red-800 font-bold text-sm px-2"
-                            >
-                                ✕
-                            </button>
-                        </div>
-                    ))}
+    <div key={q.id} className="flex items-center justify-between gap-2 text-sm p-2 bg-white border border-black" style={{borderRadius: '8px'}}>
+        <span className="flex-1 text-gray-700">{q.question}</span>
+        <span className="text-xs font-semibold px-2 py-1 bg-gray-200 text-gray-700">
+            Weight: {q.defaultWeight}
+        </span>
+        <div className="flex gap-1">
+            <button
+                onClick={() => {
+                    const newQuestion = prompt('Edit question:', q.question);
+                    if (newQuestion && newQuestion.trim()) {
+                        setCustomQuestions(prev => 
+                            prev.map(question => 
+                                question.id === q.id 
+                                    ? {...question, question: newQuestion.trim()}
+                                    : question
+                            )
+                        );
+                    }
+                }}
+                className="text-blue-600 hover:text-blue-800 font-bold text-sm px-2"
+                title="Edit question"
+            >
+                ✏️
+            </button>
+            <button
+                onClick={() => deleteCustomQuestion(q.id)}
+                className="text-red-600 hover:text-red-800 font-bold text-sm px-2"
+                title="Delete question"
+            >
+                ✕
+            </button>
+        </div>
+    </div>
+))}
                 </div>
             </div>
         )}
@@ -1174,12 +1253,20 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
     <div className="floating-button">
     <button
         onClick={handleSubmit}
+        disabled={isCalculating}
         className="brutalist-button w-full text-white py-4 px-6"
-        style={{backgroundColor: '#afa5fe'}}
+        style={{backgroundColor: '#afa5fe', opacity: isCalculating ? 0.7 : 1}}
     >
-        Calculate Fit Score ({answeredCount}/{filteredQuestions.length} answered)
+        {isCalculating ? (
+            <>
+                <span className="inline-block animate-spin mr-2">⏳</span>
+                Calculating Your Score...
+            </>
+        ) : (
+            `Calculate Fit Score (${answeredCount}/${filteredQuestions.length} answered)`
+        )}
     </button>
-    </div>
+</div>
 </div>
                     </div>
                 </div>
