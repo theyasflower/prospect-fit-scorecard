@@ -407,11 +407,6 @@ useEffect(() => {
             if (showAddQuestion) setShowAddQuestion(false);
         }
 
-        // Enter to submit (only if not in a form)
-        if (e.key === 'Enter' && !e.target.matches('input, textarea, select')) {
-            if (filteredQuestions && answeredCount === filteredQuestions.length) {  // ← ADD filteredQuestions check
-                handleSubmit();
-            }
         }
     };
 
@@ -943,7 +938,8 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                     style={{ width: `${progress}%`, backgroundColor: '#afa5fe' }}
                                 ></div>
                             </div>
-                             {/* Progress Milestone Messages - ADD HERE */}
+                           
+                            {/* Progress Milestone Messages - ADD HERE */}
         {progress >= 25 && progress < 50 && answeredCount % 5 === 0 && (
             <div className="mt-2 text-center text-sm font-semibold" style={{color: '#afa5fe'}}>
                 🎯 Nice start! Keep going...
@@ -972,11 +968,6 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
         <span className="ml-2 px-2 py-0.5 text-xs font-bold bg-brand-primary text-white border border-black" style={{borderRadius: '6px'}}>
             {customQuestions.length}
              <div className="flex-1"></div>
-    
-    <span className="text-xs text-gray-500 hidden md:block">
-    💡 Shortcuts: <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Esc</kbd> close, 
-    <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs border border-gray-300">Enter</kbd> calculate
-</span>
         </span>
     )}
 </button>
@@ -1013,9 +1004,11 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                     }}
                                     className="brutalist-button px-4 py-2 bg-red-50 text-red-600"
                                 >
-                                    Clear All
+                                    Reset
                                 </button>
                             </div>
+
+                        
 
                             {showWeightEditor && (
     <div className="mt-4 p-4 bg-gray-50 border-2 border-black" style={{borderRadius: '12px'}}>
