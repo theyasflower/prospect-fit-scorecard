@@ -805,20 +805,20 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                 <div className="min-h-0 bg-white">
                     <div className="bg-white shadow-sm sticky top-0 z-10 border-b-2 border-black">
                         <div className="max-w-4xl mx-auto px-4 py-4">
-                            <div className="flex justify-between items-center mb-3">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <h1 className="text-xl font-bold text-gray-900">
-                                            {role === 'writer' ? 'writer' : 'marketer'} fit scorecard
-                                        </h1>
-                                        <span className="text-xs font-semibold px-2 py-1 border-2 border-black" style={{backgroundColor: '#afa5fe', color: 'white', borderRadius: '6px'}}>
-                                            TheMinCave
-                                        </span>
-                                    </div>
-                                    {prospectName && <p className="text-sm text-gray-600">Prospect: {prospectName}</p>}
-                                </div>
-                                <span className="text-sm text-gray-600 font-semibold">{answeredCount} / {filteredQuestions.length}</span>
-                            </div>
+                            <div className="flex justify-between items-start sm:items-center mb-3 gap-2">
+    <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <h1 className="text-base sm:text-xl font-bold text-gray-900">
+                {role === 'writer' ? 'Writer' : 'Marketer'} Fit Scorecard
+            </h1>
+            <span className="text-xs font-semibold px-2 py-1 border-2 border-black whitespace-nowrap" style={{backgroundColor: '#afa5fe', color: 'white', borderRadius: '6px'}}>
+                TheMinCave
+            </span>
+        </div>
+        {clientName && <p className="text-xs sm:text-sm text-gray-600">Prospect: {clientName}</p>}
+    </div>
+    <span className="text-xs sm:text-sm text-gray-600 font-semibold whitespace-nowrap flex-shrink-0">{answeredCount} / {filteredQuestions.length}</span>
+</div>
                             <div className="w-full bg-gray-200 h-3 border-2 border-black" style={{borderRadius: '8px', overflow: 'hidden'}}>
                                 <div
                                     className="h-full transition-all duration-300"
