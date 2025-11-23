@@ -160,6 +160,23 @@
         font-size: 3rem !important;
     }
 }
+
+        .floating-button {
+    position: fixed;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+    max-width: 896px; /* 4xl container width */
+    margin: 0 auto;
+    z-index: 50;
+}
+
+@media (min-width: 1024px) {
+    .floating-button {
+        padding: 0;
+    }
+}
     </style>
 </head>
 <body>
@@ -989,15 +1006,14 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                         </div>
 
                         <div className="mt-8">
-    <div className="sticky bottom-4 z-20">
-        <button
-            onClick={handleSubmit}
-            className="brutalist-button w-full text-white py-4 px-6"
-            style={{backgroundColor: '#afa5fe'}}
-        >
-            Calculate Fit Score ({answeredCount}/{filteredQuestions.length} answered)
-        </button>
-    </div>
+    <div className="floating-button">
+    <button
+        onClick={handleSubmit}
+        className="brutalist-button w-full text-white py-4 px-6"
+        style={{backgroundColor: '#afa5fe'}}
+    >
+        Calculate Fit Score ({answeredCount}/{filteredQuestions.length} answered)
+    </button>
 </div>
                     </div>
                 </div>
