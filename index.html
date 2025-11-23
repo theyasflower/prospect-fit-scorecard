@@ -132,6 +132,34 @@
         .text-brand-green { color: #98de6c; }
         .border-brand-primary { border-color: #afa5fe; }
         .hover\:bg-brand-primary:hover { background-color: #afa5fe; }
+
+        /* Mobile Responsiveness */
+@media (max-width: 640px) {
+    .brutalist-card {
+        border-radius: 16px;
+    }
+    
+    .category-button {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    h2, h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .question-card {
+        padding: 0.75rem;
+    }
+    
+    .text-6xl {
+        font-size: 3rem !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -619,7 +647,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                     <div className="min-h-0 bg-white py-12 px-4">
                         <div className="max-w-4xl mx-auto">
                             <div className="bg-white brutalist-card p-6">
-                                <div className="no-print flex justify-between items-center mb-8 pb-4 border-b-2 border-gray-200">
+                                <div className="no-print flex flex-col sm:flex-row sm:justify-between items-stretch sm:items-center gap-3 mb-8 pb-4 border-b-2 border-gray-200">
                                     <button
                                         onClick={handleBackToEdit}
                                         className="brutalist-button bg-white text-gray-700 px-4 py-2"
@@ -661,7 +689,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
 
                                 <div className="mb-8">
     <h3 className="text-xl font-semibold mb-4">Summary</h3>
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-gray-50 p-4 text-center border-2 border-black" style={{borderRadius: '16px'}}>
             <p className="text-sm text-gray-600 font-semibold">Questions</p>
             <p className="text-2xl font-bold text-gray-900">{filteredQuestions.length}</p>
@@ -683,7 +711,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
 
                                 <div className="mb-10">
                                     <h3 className="text-xl font-semibold mb-4">Share Your Results</h3>
-                                    <div className="flex gap-3">
+                                    <div className="flex flex-col sm:flex-row gap-3">
                                         <button
                                             onClick={shareToLinkedIn}
                                             className="brutalist-button flex-1 px-4 py-3 bg-blue-600 text-white"
