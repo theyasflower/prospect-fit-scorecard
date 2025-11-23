@@ -972,22 +972,24 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
         <div className="hidden sm:block sm:flex-1"></div>
 
         <button
-            onClick={() => {
-                const allAnswered = filteredQuestions.every(q => answers[q.id] === true);
-                if (allAnswered) {
-                    const newAnswers = {...answers};
-                    filteredQuestions.forEach(q => {
-                        newAnswers[q.id] = false;
-                    });
-                    setAnswers(newAnswers);
-                } else {
-                    const newAnswers = {...answers};
-                    filteredQuestions.forEach(q => {
-                        newAnswers[q.id] = true;
-                    });
-                    setAnswers(newAnswers);
-                }
-            }}
+    onClick={() => {
+        const allAnswered = filteredQuestions.every(q => answers[q.id] === true);
+        if (allAnswered) {
+            // Deselect All - remove from state instead of setting to false
+            const newAnswers = {...answers};
+            filteredQuestions.forEach(q => {
+                delete newAnswers[q.id];
+            });
+            setAnswers(newAnswers);
+        } else {
+            // Select All
+            const newAnswers = {...answers};
+            filteredQuestions.forEach(q => {
+                newAnswers[q.id] = true;
+            });
+            setAnswers(newAnswers);
+        }
+    }}
             className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700 w-full sm:w-auto"
         >
             {filteredQuestions.every(q => answers[q.id] === true) ? '☑️ Deselect All' : '☐ Select All'}
