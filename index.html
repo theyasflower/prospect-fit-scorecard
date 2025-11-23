@@ -925,7 +925,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                     <div className="bg-white shadow-sm sticky top-0 z-10 border-b-2 border-black">
                         <div className="max-w-4xl mx-auto px-4 py-8">
                             <div className="flex justify-between items-start sm:items-center mb-3 gap-2">
-    <div className="flex-1 min-w-0">
+   <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1 flex-wrap">
             <h1 className="text-base sm:text-xl font-bold text-gray-900">
                 {role === 'writer' ? 'writer' : 'marketer'} fit scorecard
@@ -938,9 +938,15 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
     </div>
     <span className="text-xs sm:text-sm text-gray-600 font-semibold whitespace-nowrap flex-shrink-0">{answeredCount} / {filteredQuestions.length} answered</span>
 </div>
+                            <div className="w-full bg-gray-200 h-3 border-2 border-black" style={{borderRadius: '8px', overflow: 'hidden'}}>
+                                <div
+                                    className="h-full transition-all duration-300"
+                                    style={{ width: `${progress}%`, backgroundColor: '#afa5fe' }}
+                                ></div>
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div className="max-w-4xl mx-auto px-4 py-4">
                         <div className="bg-white brutalist-card p-4 sm:p-6 mb-6">
     <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3 mb-3">
