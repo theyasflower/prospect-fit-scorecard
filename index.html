@@ -773,17 +773,17 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                 </div>
 
                                 <div className="text-center mb-2 mt-8">
-                                    <div className="flex items-center justify-center gap-2 mb-2">
-                                        <h1 className="text-3xl font-bold text-gray-900">Your Vetting Results</h1>
-                                        <span className="text-xs font-semibold px-2 py-1 border-2 border-black" style={{backgroundColor: '#afa5fe', color: 'white', borderRadius: '8px'}}>
-                                            TheMinCave
-                                        </span>
-                                    </div>
-                                    {prospectName && <p className="text-gray-600 mt-1">Prospect: <span className="font-semibold">{prospectName}</span></p>}
-                                    <p className="text-sm text-gray-500 mt-1">
-                                        {role === 'writer' ? 'Freelance Writer' : 'Freelance Content Marketer / Consultant'} Checklist
-                                    </p>
-                                </div>
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Your Vetting Results</h1>
+        <span className="text-xs font-semibold px-2 py-1 border-2 border-black" style={{backgroundColor: '#afa5fe', color: 'white', borderRadius: '8px'}}>
+            TheMinCave
+        </span>
+    </div>
+    {prospectName && <p className="text-sm sm:text-base text-gray-600 mt-1">Prospect: <span className="font-semibold">{prospectName}</span></p>}
+    <p className="text-xs sm:text-sm text-gray-500 mt-1">
+        {role === 'writer' ? 'Freelance Writer' : 'Freelance Content Marketer / Consultant'} Checklist
+    </p>
+</div>
 
                                 <div id="score-result" className={`border-4 border-black ${interpretation.bgColor} my-8`} style={{borderRadius: '24px', padding: '2rem', boxShadow: '-6px 6px 0px 0px black'}}>
                                     <div className="text-center">
