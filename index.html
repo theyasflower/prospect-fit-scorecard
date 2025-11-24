@@ -826,13 +826,14 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
             onClick={shareToLinkedIn}
             className="brutalist-button flex-1 px-4 py-3 bg-blue-600 text-white"
         >
-            📱 Share on LinkedIn
+            💼 Share on LinkedIn
         </button>
         <button
             onClick={shareToX}
             className="brutalist-button flex-1 px-4 py-3 bg-black text-white"
+            style={{backgroundColor: '#0077b5'}}
         >
-            🐦 Share on X
+            🐦 Share on Twitter
         </button>
     </div>
 </div>
@@ -915,21 +916,21 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                     <p className="text-sm text-gray-600">
                                         <strong>Note:</strong> This checklist is for guidance only. You're ultimately responsible for your own business decisions.
                                     </p>
-                                    <div className="flex gap-3">
-                                        <button
-                                            onClick={handleBackToEdit}
-                                            className="brutalist-button flex-1 bg-white text-gray-700 py-3 px-6"
-                                        >
-                                            ← Edit Answers
-                                        </button>
-                                        <button
-                                            onClick={handleRestart}
-                                            className="brutalist-button flex-1 text-white py-3 px-6"
-                                            style={{backgroundColor: '#afa5fe'}}
-                                        >
-                                            Vet Another Prospect
-                                        </button>
-                                    </div>
+                                    <div className="flex flex-col sm:flex-row gap-3">
+    <button
+        onClick={handleBackToEdit}
+        className="brutalist-button flex-1 bg-white text-gray-700 py-3 px-6 w-full sm:w-auto"
+    >
+        ← Edit Answers
+    </button>
+    <button
+        onClick={handleRestart}
+        className="brutalist-button flex-1 text-white py-3 px-6 w-full sm:w-auto"
+        style={{backgroundColor: '#afa5fe'}}
+    >
+        Vet Another Prospect
+    </button>
+</div>
                                 </div>
                             </div>
                         </div>
@@ -1263,7 +1264,8 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
     className="brutalist-button w-full text-white py-4 px-6"
     style={{
         backgroundColor: isCalculating ? '#9990e8' : '#afa5fe',
-        cursor: isCalculating ? 'not-allowed' : 'pointer'
+        cursor: isCalculating ? 'not-allowed' : 'pointer',
+        opacity: 1
     }}
 >
         {isCalculating ? (
