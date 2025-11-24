@@ -1031,9 +1031,9 @@ const handleConfirmNo = () => {
             );
         })()}
 
-            
+            {/* CHECKLIST SCREEN */}
             {step === 'checklist' && (
-    <div className="min-h-0 bg-white"> // CHECKLIST SCREEN
+    <div className="min-h-0 bg-white">
                     <div className="bg-white shadow-sm sticky top-0 z-10 border-b-2 border-black">
                         <div className="max-w-4xl mx-auto px-4 py-8">
                             <div className="flex justify-between items-start sm:items-center mb-3 gap-2">
@@ -1352,16 +1352,30 @@ const handleConfirmNo = () => {
         To edit questions, use the 
         <button 
             onClick={() => {
-                setShowAddQuestion(true);
+                // Open modal if closed
+                if (!showAddQuestion) {
+                    setShowAddQuestion(true);
+                }
+                
+                // Scroll to top first, then to modal
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
                 setTimeout(() => {
-                    document.getElementById('add-question')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
+                    const element = document.getElementById('add-question');
+                    if (element) {
+                        element.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start',
+                            inline: 'nearest'
+                        });
+                    }
+                }, 500); // Longer delay
             }}
             className="font-semibold text-blue-600 hover:underline mx-1"
         >
             Manage Custom Questions
         </button>
-        panel above.
+        button above.
     </p>
 )}
                                         <div className="space-y-3">
