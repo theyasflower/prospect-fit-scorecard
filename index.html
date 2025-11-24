@@ -152,6 +152,7 @@
         .bg-brand-primary { background-color: #afa5fe; }
         .bg-brand-yellow { background-color: #fadf0a; }
         .bg-brand-green { background-color: #98de6c; }
+.bg-brand-green-light { background-color: #cfee30; }
         .text-brand-primary { color: #afa5fe; }
         .text-brand-yellow { color: #fadf0a; }
         .text-brand-green { color: #98de6c; }
@@ -461,7 +462,7 @@ const baseQuestions = questionsBase.map(q => ({
 // Add custom questions with "Other" category
 const customQuestionsWithCategory = customQuestions.map(q => ({
     ...q,
-    category: "Other",
+    category: "My Custom Questions",
     weight: customWeights[q.id] !== undefined ? customWeights[q.id] : q.defaultWeight
 }));
 
@@ -610,7 +611,7 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
         id: `custom-${Date.now()}`,
         question: questionText,
         defaultWeight: parseInt(weight),
-        category: "Other",
+        category: "My Custom Questions",
         isCustom: true
     };
     setCustomQuestions(prev => [...prev, newQuestion]);
@@ -1070,7 +1071,8 @@ const handleConfirmNo = () => {
             }, 100);
         }
     }}
-    className={`brutalist-button px-4 py-2 w-full sm:w-auto ${showWeightEditor ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+    className={`brutalist-button px-4 py-2 w-full sm:w-auto ${showWeightEditor ? 'text-gray-900' : 'bg-gray-100 text-gray-700'}`}
+    style={showWeightEditor ? {backgroundColor: '#98DE6C'} : {}}
 >
     ⚖️ Adjust Weights
 </button>
@@ -1084,7 +1086,7 @@ const handleConfirmNo = () => {
             }, 100);
         }
     }}
-    className={`brutalist-button px-4 py-2 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto ${showAddQuestion ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+    className={`brutalist-button px-4 py-2 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto ${showAddQuestion ? 'bg-brand-green text-gray-900' : 'bg-gray-100 text-gray-700'}`}
 >
     <span>{customQuestions.length > 0 ? '⚙️ Manage Custom Questions' : '➕ Add Custom Question'}</span>
     {customQuestions.length > 0 && (
@@ -1250,7 +1252,7 @@ const handleConfirmNo = () => {
                     </select>
                     <button
                         onClick={saveEditQuestion}
-                        className="brutalist-button px-3 py-2 bg-green-600 text-white text-sm"
+                        className="brutalist-button px-3 py-2 bg-brand-green text-gray-900 text-sm"
                     >
                         ✓ Save
                     </button>
