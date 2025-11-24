@@ -614,7 +614,7 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
         isCustom: true
     };
     setCustomQuestions(prev => [...prev, newQuestion]);
-    setShowAddQuestion(false);
+    
 };
 
 const deleteCustomQuestion = (id) => {
@@ -841,10 +841,10 @@ const handleConfirmNo = () => {
     );
 })()}
 
-            // RESULTS SCREEN
+        
             {step === 'results' && (() => {
     const score = calculateScore();
-    const interpretation = getScoreInterpretation(score);
+    const interpretation = getScoreInterpretation(score); // RESULTS SCREEN
 
     return (
         <div className="min-h-0 bg-white py-12 px-4">
@@ -1030,9 +1030,9 @@ const handleConfirmNo = () => {
             );
         })()}
 
-            // CHECKLIST SCREEN
+            
             {step === 'checklist' && (
-    <div className="min-h-0 bg-white">
+    <div className="min-h-0 bg-white"> // CHECKLIST SCREEN
                     <div className="bg-white shadow-sm sticky top-0 z-10 border-b-2 border-black">
                         <div className="max-w-4xl mx-auto px-4 py-8">
                             <div className="flex justify-between items-start sm:items-center mb-3 gap-2">
@@ -1061,18 +1061,32 @@ const handleConfirmNo = () => {
                     <div className="max-w-4xl mx-auto px-4 py-4">
                         <div className="bg-white brutalist-card p-4 sm:p-6 mb-6">
     <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3 mb-3">
-        <button
-            onClick={() => setShowWeightEditor(!showWeightEditor)}
-            className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700 w-full sm:w-auto"
-        >
-            ⚖️ Adjust Weights
-        </button>
-
        <button
-    onClick={() => setShowAddQuestion(!showAddQuestion)}
-    className="brutalist-button px-4 py-2 bg-gray-100 text-gray-700 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto"
+    onClick={() => {
+        setShowWeightEditor(!showWeightEditor);
+        if (!showWeightEditor) {
+            setTimeout(() => {
+                document.getElementById('weight-editor')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    }}
+    className={`brutalist-button px-4 py-2 w-full sm:w-auto ${showWeightEditor ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700'}`}
 >
-    <span className="whitespace-nowrap">{customQuestions.length > 0 ? '⚙️ Manage Custom Questions' : '➕ Add Custom Question'}</span>
+    ⚖️ Adjust Weights
+</button>
+
+<button
+    onClick={() => {
+        setShowAddQuestion(!showAddQuestion);
+        if (!showAddQuestion) {
+            setTimeout(() => {
+                document.getElementById('add-question')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    }}
+    className={`brutalist-button px-4 py-2 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto ${showAddQuestion ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+>
+    <span>{customQuestions.length > 0 ? '⚙️ Manage Custom Questions' : '➕ Add Custom Question'}</span>
     {customQuestions.length > 0 && (
         <span className="px-2 py-0.5 text-xs font-bold bg-brand-primary text-white border border-black flex-shrink-0" style={{borderRadius: '6px'}}>
             {customQuestions.length}
