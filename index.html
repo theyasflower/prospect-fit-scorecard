@@ -1346,6 +1346,24 @@ const handleConfirmNo = () => {
                                 return (
                                     <div key={category} className={`category-section ${idx > 0 ? 'mt-8 pt-8 border-t-2 border-gray-200' : ''}`}>
                                         <h3 className="text-xl font-bold text-gray-900 mb-4">{category}</h3>
+
+{category === "My Custom Questions" && (
+    <p className="text-sm text-gray-600 mb-3 italic">
+        To edit questions, use the 
+        <button 
+            onClick={() => {
+                setShowAddQuestion(true);
+                setTimeout(() => {
+                    document.getElementById('add-question')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }}
+            className="font-semibold text-blue-600 hover:underline mx-1"
+        >
+            Manage Custom Questions
+        </button>
+        panel above.
+    </p>
+)}
                                         <div className="space-y-3">
                                             {categorizedQuestions[category].map(question => (
     <div 
