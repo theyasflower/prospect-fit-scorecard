@@ -418,6 +418,7 @@ const [confirmMessage, setConfirmMessage] = useState('');
                         if (data.answers) setAnswers(data.answers);
                         if (data.customWeights) setCustomWeights(data.customWeights);
                         if (data.customQuestions) setCustomQuestions(data.customQuestions);
+                         if (data.hiddenCategories) setHiddenCategories(new Set(data.hiddenCategories));
                     } catch (e) {
                         console.error('Error loading saved data', e);
                     }
