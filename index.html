@@ -541,13 +541,18 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
                 };
             };
 
-      const handleSubmit = () => {
+     const handleSubmit = () => {
     setIsCalculating(true);
     setTimeout(() => {
         setStep('results');
         setIsCalculating(false);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1500); // 1.5 second delay
+        setTimeout(() => {
+            const scoreElement = document.getElementById('score-result');
+            if (scoreElement) {
+                scoreElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }, 1500);
 };
 
             const handleBackToEdit = () => {
@@ -767,7 +772,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
                                     </p>
                                 </div>
 
-                                <div className={`border-4 border-black ${interpretation.bgColor} my-8`} style={{borderRadius: '24px', padding: '2rem', boxShadow: '-6px 6px 0px 0px black'}}>
+                                <div id="score-result" className={`border-4 border-black ${interpretation.bgColor} my-8`} style={{borderRadius: '24px', padding: '2rem', boxShadow: '-6px 6px 0px 0px black'}}>
                                     <div className="text-center">
                                         <AnimatedScore score={score} color={interpretation.color} />
                                         <h2 className={`text-2xl font-bold mb-2 ${interpretation.color}`}>
