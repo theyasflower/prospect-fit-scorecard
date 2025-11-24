@@ -632,20 +632,6 @@ const deleteCustomQuestion = (id) => {
     );
 };
 
-            const deleteCustomQuestion = (id) => {
-    showConfirm(
-        'Delete this custom question?',
-        () => {
-            setCustomQuestions(prev => prev.filter(q => q.id !== id));
-            setAnswers(prev => {
-                const newAnswers = {...prev};
-                delete newAnswers[id];
-                return newAnswers;
-            });
-        }
-    );
-};
-
 // START EDITING A CUSTOM QUESTION - ADD THESE HERE
 const startEditQuestion = (question) => {
     setEditingQuestion(question.id);
