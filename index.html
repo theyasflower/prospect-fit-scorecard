@@ -750,22 +750,34 @@ const handleConfirmNo = () => {
         <div className="min-h-0 flex items-center justify-center p-4 bg-white">
             <div className="max-w-md w-full bg-white brutalist-card p-8">
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">prospect fit scorecard</h1>
-                    <p className="text-lg font-semibold mb-1" style={{color: '#afa5fe'}}>TheMinCave</p>
-                    <p className="text-xs text-gray-500">Vet leads and prospects systematically to make better decisions</p>
-                </div>
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Prospect Fit Scorecard</h1>
+        <span className="text-xs font-semibold px-2 py-1 border-2 border-black" style={{backgroundColor: '#afa5fe', color: 'white', borderRadius: '8px'}}>
+            TheMinCave
+        </span>
+    </div>
+    <p className="text-sm text-gray-600">
+        Vet leads and prospects systematically to make better decisions
+    </p>
+</div>
                 
                 {hasSavedData && (
-                    <div className="mb-6 p-4 bg-brand-green bg-opacity-20 border-2 border-black" style={{borderRadius: '12px'}}>
-                        <p className="text-sm font-semibold text-gray-800 mb-2">📋 Resume your progress?</p>
-                        <button
-                            onClick={() => setStep('checklist')}
-                            className="text-sm text-gray-700 underline font-semibold"
-                        >
-                            Continue where you left off
-                        </button>
-                    </div>
-                )}
+    <div className="mb-6 p-4 border-2 border-black" style={{backgroundColor: '#98DE6C', borderRadius: '12px'}}>
+        <div className="flex items-start gap-3">
+            <span className="text-2xl">📋</span>
+            <div className="flex-1">
+                <p className="text-sm font-semibold text-gray-900 mb-1">Resume your progress?</p>
+                <p className="text-xs text-gray-700 mb-3">Pick up where you left off</p>
+                <button
+                    onClick={() => setStep('checklist')}
+                    className="brutalist-button px-4 py-2 bg-white text-gray-900 text-sm"
+                >
+                    Continue →
+                </button>
+            </div>
+        </div>
+    </div>
+)}
 
                 <form onSubmit={handleStart} className="space-y-6">
                     <div>
