@@ -418,7 +418,7 @@ const [confirmMessage, setConfirmMessage] = useState('');
                         if (data.answers) setAnswers(data.answers);
                         if (data.customWeights) setCustomWeights(data.customWeights);
                         if (data.customQuestions) setCustomQuestions(data.customQuestions);
-                         if (data.hiddenCategories) setHiddenCategories(new Set(data.hiddenCategories));
+                        if (data.hiddenCategories) setHiddenCategories(new Set(data.hiddenCategories));
                     } catch (e) {
                         console.error('Error loading saved data', e);
                     }
@@ -449,10 +449,11 @@ useEffect(() => {
                         role,
                         answers,
                         customWeights,
-                        customQuestions
+                        customQuestions,
+                        hiddenCategories: Array.from(hiddenCategories)
                     }));
                 }
-            }, [prospectName, role, answers, customWeights]);
+            }, [prospectName, role, answers, customWeights, customQuestions, hiddenCategories]);
 
            const questionsBase = role === 'writer' ? WRITER_QUESTIONS_BASE : MARKETER_QUESTIONS_BASE;
 const baseQuestions = questionsBase.map(q => ({
