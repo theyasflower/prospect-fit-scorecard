@@ -256,7 +256,7 @@
             { id: 36, category: "Contract & Legal", question: "Are confidentiality and non-disclosure terms appropriate and reasonable?", defaultWeight: 3 },
             { id: 37, category: "Contract & Legal", question: "Are liability protections and indemnity terms specified?", defaultWeight: 3 },
             { id: 38, category: "Editorial Process & Workflow", question: "Is the main editorial contact identified and authorized to make decisions?", defaultWeight: 1 },
-            { id: 39, category: "Editorial Process & Workflow", question: "Are revision rounds and feedback cycles clearly upon?", defaultWeight: 3 },
+            { id: 39, category: "Editorial Process & Workflow", question: "Are revision rounds and feedback cycles clearly agreed upon?", defaultWeight: 3 },
             { id: 40, category: "Editorial Process & Workflow", question: "Are content approval deadlines realistic?", defaultWeight: 3 },
             { id: 41, category: "Industry & Niche Alignment", question: "Does the prospect's content niche fit your expertise and career goals?", defaultWeight: 3 },
             { id: 42, category: "Industry & Niche Alignment", question: "Are there no ethical concerns with the prospect's industry or business practices?", defaultWeight: 3 },
@@ -696,7 +696,7 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
 
             const categories = Object.keys(categorizedQuestions).sort();
             const allCategories = [...new Set(questions.map(q => q.category))].sort();
-            const answeredCount = filteredQuestions.filter(q => answers[q.id] !== undefined).length;
+            const answeredCount = filteredQuestions.filter(q => answers[q.id] === true).length;
             const progress = (answeredCount / filteredQuestions.length) * 100;
 
     // Confirmation Modal Component
@@ -1053,7 +1053,7 @@ const handleConfirmNo = () => {
         </div>
         {prospectName && <p className="text-xs sm:text-sm text-gray-600">Prospect: {prospectName}</p>}
     </div>
-    <span className="text-xs sm:text-sm text-gray-600 font-semibold whitespace-nowrap flex-shrink-0">{answeredCount} / {filteredQuestions.length} answered</span>
+    <span className="text-xs sm:text-sm text-gray-600 font-semibold whitespace-nowrap flex-shrink-0">{answeredCount} / {filteredQuestions.length} selected</span>
 </div>
                             <div className="w-full bg-gray-200 h-3 border-2 border-black" style={{borderRadius: '8px', overflow: 'hidden'}}>
                                 <div
@@ -1455,7 +1455,7 @@ const handleConfirmNo = () => {
 ) : filteredQuestions.length === 0 ? (
     'No questions available. Include some categories'
 ) : (
-    `Calculate Fit Score (${answeredCount}/${filteredQuestions.length} answered)`
+    `Calculate Fit Score (${answeredCount}/${filteredQuestions.length} selected)`
 )}
     </button>
 </div>
