@@ -471,9 +471,13 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
             const handleStart = (e) => {
                 e.preventDefault();
                 if (role) {
-                    setStep('checklist');
-                }
-            };
+                    const saved = JSON.parse(localStorage.getItem('clientVetting') || '{}');
+        delete saved.freshStart;
+        localStorage.setItem('clientVetting', JSON.stringify(saved));
+        
+        setStep('checklist');
+    }
+};
 
             const handleAnswerChange = (questionId, value) => {
                 setAnswers(prev => ({
@@ -574,18 +578,23 @@ const questions = [...baseQuestions, ...customQuestionsWithCategory];
             };
 
             const handleRestart = () => {
-                if (confirm('Start afresh? This will clear all answers.')) {
-                    setStep('start');
-                    setProspectName('');
-                    setRole('');
-                    setAnswers({});
-                    setCustomWeights({});
-                    setHiddenCategories(new Set());
-                    localStorage.removeItem('clientVetting');
-                }
-            };
-
-    
+    if (confirm('Start a new evaluation? Your custom questions will be kept.')) {
+        setStep('start');
+        setProspectName('');
+        setRole('');
+        setAnswers({});
+        
+        localStorage.setItem('clientVetting', JSON.stringify({
+            prospectName: '',
+            role: '',
+            answers: {},
+            customWeights,
+            customQuestions,
+            hiddenCategories: Array.from(hiddenCategories),
+            freshStart: true  // ← Add this flag
+        }));
+    }
+};
 
             const addCustomQuestion = (questionText, weight) => {
     const newQuestion = {
@@ -650,7 +659,8 @@ https://themincave.com/tools/Prospect-Fit-Scorecard`;
 
             // START SCREEN
             if (step === 'start') {
-                const hasSavedData = localStorage.getItem('clientVetting');
+    const savedData = localStorage.getItem('clientVetting');
+    const hasSavedData = savedData && !JSON.parse(savedData).freshStart;
                 
                 return (
                     <div className="min-h-0 flex items-center justify-center p-4 bg-white">
